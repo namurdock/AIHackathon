@@ -6,6 +6,7 @@ Finally with the introduction of the Document scanning AI models in the Power Pl
 
 Then, using Chat GPT, have the system generate a thank you message to the donor taking into consideration why the donation was given and for what cause.
 
+
 # Full solution features
 
 - Model Driven App "Income Tracker" for the back office administration of data.
