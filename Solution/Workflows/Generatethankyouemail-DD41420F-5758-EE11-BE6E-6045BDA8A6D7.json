@@ -1,0 +1,227 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "nmcd_sharedcommondataserviceforapps_649df"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_open-20ai-5fe1f7ebdcf599ba00-5fb1f474d878e1ee20": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedopen20ai5fe1f7ebdcf599ba005fb1f474d878e1ee20_c57a6"
+        },
+        "api": {
+          "name": "shared_open-20ai-5fe1f7ebdcf599ba00-5fb1f474d878e1ee20"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "e998d96f-59dd-4d22-ac54-b65463d37fae"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "nmcd_transaction",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_Appeal": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "914aefb2-fcbb-481b-a8c6-4597a99da989"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "nmcd_appeals",
+              "recordId": "@triggerOutputs()?['body/_nmcd_sourceappeal_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Project": {
+          "runAfter": {
+            "Get_Appeal": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "327d5200-1532-4922-9e3f-704942fe1ae0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "nmcd_projects",
+              "recordId": "@triggerOutputs()?['body/_nmcd_destinationproject_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Type": {
+          "runAfter": {
+            "Get_Project": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b02b22a3-c3ee-46b8-851f-416023bb0a3a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "nmcd_transactiontypes",
+              "recordId": "@triggerOutputs()?['body/_nmcd_transactiontype_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_Contact": {
+          "runAfter": {
+            "Get_Type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ab193740-cafd-45ff-9de2-cd40d62f4145"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "contacts",
+              "recordId": "@triggerOutputs()?['body/_nmcd_contact_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Chat_GPT": {
+          "runAfter": {
+            "Get_Contact": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b9cd5c9c-cd2f-41ef-aa9c-cd7245d3009e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_open-20ai-5fe1f7ebdcf599ba00-5fb1f474d878e1ee20",
+              "operationId": "ChatGPT",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_open-20ai-5fe1f7ebdcf599ba00-5fb1f474d878e1ee20"
+            },
+            "parameters": {
+              "body/model": "gpt-3.5-turbo-16k",
+              "body/messages": [
+                {
+                  "role": "system",
+                  "content": "Given my charity, Mental Health Awareness, recieved a donation of £@{triggerOutputs()?['body/nmcd_amount']} from \"@{outputs('Get_Contact')?['body/fullname']}\" , because of the @{outputs('Get_Appeal')?['body/nmcd_name']} appeal that they saw which @{outputs('Get_Appeal')?['body/nmcd_description']}, and would like the money to go towards the @{outputs('Get_Project')?['body/nmcd_name']} project which @{outputs('Get_Project')?['body/nmcd_description']}, generate me just the main body of an html thank you email to let them know how greatful we are for their contribution signed from Nick Murdock, Head of fundraising. Keep the style clear to read for all."
+                }
+              ],
+              "body/temperature": 1,
+              "body/max_tokens": 500,
+              "body/top_p": 1,
+              "body/frequency_penalty": 0,
+              "body/presence_penalty": 0
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Add_a_new_row": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "74df0e07-54ac-4281-a170-52e5a5a5bf6b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emails",
+              "item/activitypointer_activity_parties": [
+                {
+                  "participationtypemask": 2,
+                  "partyid@odata.bind": "contacts(@{outputs('Get_Contact')?['body/contactid']})"
+                }
+              ],
+              "item/description": "@outputs('Compose')",
+              "item/regardingobjectid_nmcd_transaction_email@odata.bind": "nmcd_transactions(@{triggerOutputs()?['body/nmcd_transactionid']})",
+              "item/subject": "Thank You for Your Generous Donation to the @{outputs('Get_Project')?['body/nmcd_name']} Project"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Chat_GPT": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ec9e80dc-4a7e-4481-9e3c-8a658348811b"
+          },
+          "type": "Compose",
+          "inputs": "@body('Chat_GPT')?['choices']?[0]?['message']?['content']"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

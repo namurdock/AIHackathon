@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{51992fdc-18ab-40d3-8791-dc871a09c9c3}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="nmcd_name" select="1" icon="1" preview="1">
+        <row name="result" id="nmcd_transactionid">
+          <cell name="nmcd_name" width="132" />
+          <cell name="nmcd_date" width="100" />
+          <cell name="nmcd_contact" width="300" />
+          <cell name="nmcd_amount" width="206" />
+          <cell name="nmcd_destinationproject" width="289" />
+          <cell name="nmcd_sourceappeal" width="263" />
+          <cell name="nmcd_transactiontype" width="289" />
+          <cell name="statuscode" width="119" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="nmcd_transaction">
+          <attribute name="nmcd_transactionid" />
+          <attribute name="nmcd_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="nmcd_amount" />
+          <attribute name="nmcd_contact" />
+          <attribute name="nmcd_date" />
+          <attribute name="nmcd_destinationproject" />
+          <attribute name="nmcd_sourceappeal" />
+          <attribute name="nmcd_transactiontype" />
+          <attribute name="statuscode" />
+          <order attribute="nmcd_date" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Transactions" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

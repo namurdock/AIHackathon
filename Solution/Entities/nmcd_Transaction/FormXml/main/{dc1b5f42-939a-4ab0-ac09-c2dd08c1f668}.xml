@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{dc1b5f42-939a-4ab0-ac09-c2dd08c1f668}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{48693a6a-edf4-449c-87f0-328517d202f7}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{378ca296-44e9-41ea-9d2e-41ea55f13ab5}" columns="11">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2ba7c8c2-6370-4d1d-890f-759dbfc3d358}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="nmcd_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f120e5e4-5c61-430b-b6af-b861afd6caa5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Date" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_date" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="nmcd_date" disabled="false" />
+                      </cell>
+                      <cell id="{4e07d07f-90ce-4c51-839f-158471b7ae99}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Source Appeal" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_sourceappeal" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="nmcd_sourceappeal" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5294af25-1bdb-4335-8942-ee0c5f751678}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Contact" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_contact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="nmcd_contact" disabled="false" />
+                      </cell>
+                      <cell id="{73a996c8-402d-436d-bb33-df1eb793bb4f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Destination Project" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_destinationproject" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="nmcd_destinationproject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aa47d41e-4a37-477e-a7b2-ee695bcf7fc7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Transaction Type" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_transactiontype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="nmcd_transactiontype" disabled="false" />
+                      </cell>
+                      <cell id="{32900deb-0863-43bb-9c7b-d6bec9f3b7c7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1e8de8e1-8e51-4959-88b4-10a3d329c237}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Amount" languagecode="1033" />
+                        </labels>
+                        <control id="nmcd_amount" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="nmcd_amount" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{bf552167-9be7-4802-a0e2-f487ba058fdc}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{155b1a78-2bc9-4de4-867f-4b092d0b74cd}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell locklevel="0" id="{9cde22f6-9b83-48c5-8aa4-42c41bb808cd}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{6b86a031-b713-47cc-9b94-b8dba720b1fe}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{49e80d3d-3eb4-4e8f-9850-8c5edc3acb22}" rowspan="15" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientActivities>appointment,email,phonecall,task</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,email:4202:,fax:4204:,letter:4207:,phonecall:4210:,recurringappointmentmaster:4251:,socialactivity:4216:,task:4212:,chat:10096:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"socialactivity":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"chat":{"showTopDate":true,"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showTopDate":true,"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{c4b061e4-52bc-4147-a6b4-71141fff6045}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{16dd5083-a07c-450c-83d9-070dafd06bbe}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e8073285-ebb0-4e2d-acac-1545a92795ad}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{3d849c40-c9d0-4e46-a56e-7bdfed790c3a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{5b82c4dd-4dd8-47a6-b291-79241c9c306b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c4535f27-61c8-45a5-8811-26b0fca3fd5d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{8cedaa68-c375-4e17-97e7-ed42b3666784}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{70f73bfd-d423-4926-bc2d-82198011932a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
